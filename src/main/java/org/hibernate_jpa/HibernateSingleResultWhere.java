@@ -1,0 +1,28 @@
+package org.hibernate_jpa;
+
+import jakarta.persistence.EntityManager;
+import org.hibernate_jpa.entity.Cliente;
+import org.hibernate_jpa.util.JpaUtil;
+
+//import javax.management.Query;
+import jakarta.persistence.Query;
+import java.util.Scanner;
+
+public class HibernateSingleResultWhere {
+    public static void main(String[] args) {
+
+        Scanner s = new Scanner(System.in);
+
+        EntityManager em = JpaUtil.getEntityManager();
+        Query query = em.createQuery("select c from Cliente c where c.formaPago=?1", Cliente.class);
+
+        System.out.println("Ingrese una forma de pago: ");
+        String pago = s.next();
+        query.setParameter(1, pago);
+        query.setMaxResults(1);
+        Cliente c = (Cliente) query.getSingleResult();
+        System.out.println(c);
+        em.close();
+
+    }
+}
