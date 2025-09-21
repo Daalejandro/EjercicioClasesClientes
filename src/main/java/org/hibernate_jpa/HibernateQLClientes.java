@@ -8,7 +8,7 @@ import org.hibernate_jpa.util.JpaUtil;
 import java.util.Arrays;
 import java.util.List;
 
-public class HibernateQL {
+public class HibernateQLClientes {
     public static void main(String[] args) {
 
         EntityManager em = JpaUtil.getEntityManager();
