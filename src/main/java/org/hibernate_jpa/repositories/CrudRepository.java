@@ -7,5 +7,6 @@ public interface CrudRepository<T> {
     T porId(Long id);
     void guardar(T t);
     void eliminar(Long id);
+    T porNombre(String nombre);
 
 }

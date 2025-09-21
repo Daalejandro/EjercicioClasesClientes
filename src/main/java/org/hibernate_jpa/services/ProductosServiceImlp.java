@@ -27,6 +27,9 @@ public class ProductosServiceImlp implements ProductService {
     public Optional<Productos> porId(Long id) {
         return Optional.ofNullable(repo.porId(id));
     }
+    public Optional<Productos> porNombre(String nombre) {
+        return Optional.ofNullable(repo.porNombre(nombre));
+    }
 
     @Override
     public void guardar(Productos producto) {

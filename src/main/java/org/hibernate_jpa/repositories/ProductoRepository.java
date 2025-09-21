@@ -1,6 +1,7 @@
 package org.hibernate_jpa.repositories;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import org.hibernate_jpa.entity.Productos;
 
 import java.util.List;
@@ -22,6 +23,16 @@ public class ProductoRepository implements CrudRepository<Productos>{
         return em.find(Productos.class, id);
     }
 
+    @Override
+    public Productos porNombre(String nombre){
+//        return em.find(Productos.class, nombre);
+        try {
+            return em.createQuery("SELECT p FROM Productos p WHERE p.nombre = :nombre",
+                    Productos.class).setParameter("nombre", nombre).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
     @Override
     public void guardar(Productos producto) {
         if(producto.getId() != null && producto.getId()<0){

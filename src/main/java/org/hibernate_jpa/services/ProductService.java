@@ -11,5 +11,6 @@ public interface ProductService {
     Optional<Productos> porId(Long id);
     void guardar(Productos producto);
     void eliminar(Long id);
+    Optional<Productos> porNombre(String nombre);
 
 }

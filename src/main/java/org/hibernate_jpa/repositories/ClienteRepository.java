@@ -24,6 +24,11 @@ public class ClienteRepository implements CrudRepository<Cliente> {
     }
 
     @Override
+    public Cliente porNombre(String nombre){
+        return em.find(Cliente.class, nombre);
+    }
+
+    @Override
     public void guardar(Cliente cliente) {
         if(cliente.getId() != null && cliente.getId()<0){
             em.merge(cliente);
