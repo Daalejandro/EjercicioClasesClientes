@@ -24,11 +24,15 @@ public class Cliente {
     public Cliente() {
 
     }
+    public Cliente(String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
 
     public Cliente(String nombre, String apellido, Long id, String formaPago) {
         this.nombre = nombre;
         this.apellido = apellido;
-        id = id;
+        this.id = id;
         this.formaPago = formaPago;
     }
 

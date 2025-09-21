@@ -1,55 +1,56 @@
 package org.hibernate_jpa.services;
 
-
 import jakarta.persistence.EntityManager;
 import org.hibernate_jpa.entity.Cliente;
-import org.hibernate_jpa.repositories.ClienteRepository;
+import org.hibernate_jpa.entity.Productos;
 import org.hibernate_jpa.repositories.CrudRepository;
+import org.hibernate_jpa.repositories.ProductoRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ClienteServicelmpl implements ClienteService{
+public class ProductosServiceImlp implements ProductService {
 
     private EntityManager em;
-    private CrudRepository<Cliente> repository;
+    private CrudRepository<Productos> repo;
 
-    public ClienteServicelmpl(EntityManager em) {
+    public ProductosServiceImlp(EntityManager em) {
         this.em = em;
-        this.repository = new ClienteRepository(em);
+        this.repo = new ProductoRepository(em);
     }
 
     @Override
-    public List<Cliente> listar() {
-        return repository.listar();
+    public List<Productos> listar(){
+        return repo.listar();
     }
     @Override
-    public Optional<Cliente> porId(Long id) {
-        return Optional.ofNullable(repository.porId(id));
+    public Optional<Productos> porId(Long id) {
+        return Optional.ofNullable(repo.porId(id));
     }
 
     @Override
-    public void guardar(Cliente cliente) {
+    public void guardar(Productos producto) {
         try{
             em.getTransaction().begin();
-            repository.guardar(cliente);
+            repo.guardar(producto);
             em.getTransaction().commit();
-        }catch(Exception e) {
+        }catch (Exception e){
             em.getTransaction().rollback();
             e.printStackTrace();
         }
     }
 
     @Override
-    public void eliminar(Long id) {
-        try {
-
+    public void eliminar(Long id){
+        try{
             em.getTransaction().begin();
-            repository.eliminar(id);
+            repo.eliminar(id);
             em.getTransaction().commit();
-        }catch(Exception e){
+        }catch (Exception e){
             em.getTransaction().rollback();
             e.printStackTrace();
         }
     }
+
+
 }

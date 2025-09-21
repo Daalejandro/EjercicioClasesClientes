@@ -3,6 +3,7 @@
     <persistence-unit name="ejemploJPA" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>org.hibernate_jpa.entity.Cliente</class>
+        <class>org.hibernate_jpa.entity.Productos</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/java_curso?serverTimezone=America/El_Salvador"/>
